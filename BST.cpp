@@ -579,17 +579,27 @@ BinarySearchTree::Iterator BinarySearchTree::find(const Key &key)
             {
                 node = node->left;
             }
-            if (node->left != nullptr)
+            bool ok = false;
+            while (!ok)
             {
-                Node* test_node = node->left;
-                while (test_node->right != nullptr)
+                if (node->left != nullptr)
                 {
-                    test_node = test_node->right;
-                    if (test_node->keyValuePair.first == key)
+                    ok = true;
+                    Node* test_node = node->left;
+                    while (test_node->right != nullptr)
                     {
-                        node = test_node;
-                        break;
+                        test_node = test_node->right;
+                        if (test_node->keyValuePair.first == key)
+                        {
+                            ok = false;
+                            node = test_node;
+                            break;
+                        }
                     }
+                }
+                else
+                {
+                    ok = true;
                 }
             }
             return Iterator(node);
@@ -632,17 +642,27 @@ BinarySearchTree::ConstIterator BinarySearchTree::find(const Key &key) const
             {
                 node = node->left;
             }
-            if (node->left != nullptr)
+            bool ok = false;
+            while (!ok)
             {
-                Node* test_node = node->left;
-                while (test_node->right != nullptr)
+                if (node->left != nullptr)
                 {
-                    test_node = test_node->right;
-                    if (test_node->keyValuePair.first == key)
+                    ok = true;
+                    Node* test_node = node->left;
+                    while (test_node->right != nullptr)
                     {
-                        node = test_node;
-                        break;
+                        test_node = test_node->right;
+                        if (test_node->keyValuePair.first == key)
+                        {
+                            ok = false;
+                            node = test_node;
+                            break;
+                        }
                     }
+                }
+                else
+                {
+                    ok = true;
                 }
             }
             return ConstIterator(node);

@@ -3,6 +3,7 @@
 #include <utility>
 #include <cstdint>
 #include <string>
+#include <limits>
 
 using Key = uint32_t; //!< тип ключей в дереве
 using Value = double; //!< тип значений в дереве
@@ -49,7 +50,7 @@ class BinarySearchTree
 
         Node** root = nullptr;
         Node* ghost = nullptr;
-        mutable bool isend = false;
+        bool isend = false;
     };
 
 public:
@@ -165,8 +166,7 @@ private:
     size_t _size = 0; //!< размер дерева
     Node *_root = nullptr; //!< корневой узел дерева
 
-    Node _ghost = Node(0, 0);
-    Node* copy_nodes(Node* other, Node* par, Node** nroot, Node* nghost);
+    Node* copy_nodes(Node* other, Node* par, Node** nroot);
     void move_nodes(Node* node, Node** nroot);
     void balance();
 };

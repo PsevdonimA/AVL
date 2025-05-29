@@ -49,7 +49,6 @@ class BinarySearchTree
         void rotate_right();
 
         Node** root = nullptr;
-        Node* ghost = nullptr;
         bool isend = false;
     };
 
